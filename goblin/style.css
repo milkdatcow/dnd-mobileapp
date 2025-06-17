@@ -65,6 +65,18 @@ h1{
   display: none;
 }
 
+.app-nav .tab svg {
+  fill: white;          /* default icon color */
+  transition: fill 0.3s ease;
+}
+
+.app-nav .tab.active svg {
+  fill: #FFA500;       /* orange accent color for active icon */
+  stroke-width: 0.5;
+  stroke: #FFA500;
+}
+
+
 @media (min-width: 768px) {
     .grid{
         flex-direction: row;
