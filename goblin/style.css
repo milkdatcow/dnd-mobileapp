@@ -1,3 +1,9 @@
+:root {
+  --nav-width: 200px;
+  --nav-height: 60px;
+  --gutter: 20px;
+}
+
 body{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     margin:0px;
@@ -6,15 +12,23 @@ body{
     color: white;
 }
 
-
-.container{
-    padding:20px;
+.grid{
+    display: flex;
+    flex-direction: column; /* default mobile layout */
+    min-height: 100vh;
 }
-.bottom-nav{
-     position: fixed;
+
+.main{               
+    max-width: none;           
+    flex: 1;                    
+    padding: 40px;
+}
+
+.app-nav{
+    position: fixed;
     bottom: 0;
     width: 100%;
-    height: 60px;
+    height: var(--nav-height);
     background: #2C2C2C;
     display: flex;
     justify-content: space-around;
@@ -23,22 +37,44 @@ body{
     z-index: 1000;
 }
 
-.bottom-nav .tab {
+.app-nav .tab {
     color:white;
     text-decoration: none;
     font-size: 1rem;
     padding: 10px;
     text-align: center;
-    flex: 1;
 }
 
-.bottom-nav .tab:hover {
+.app-nav .tab:hover {
   font-weight: bold;
   border-radius: 10px;
 }
 
 @media (min-width: 768px) {
-  .bottom-nav {
-    display: none; /* Hide on desktop */
+    .grid{
+        flex-direction: row;
+    }
+  .app-nav {
+    position:relative;
+    left:0px;
+    bottom:auto;
+    width: var(--nav-width);
+    height: 100%;
+    flex-direction: column;
+    border-top: none;
+    border-right: 1px solid #808080;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 20px;
   }
+  .app-nav .tab {
+    width: 80%;
+    text-align: left;
+  }
+  .left-pane{
+    padding-left: clamp(0px, 10%, 10%);
+}
+.main{
+    padding-right: clamp(0px, 10%, 10%);
+}
 }
