@@ -12,6 +12,10 @@ body{
     color: white;
 }
 
+h1{
+    color:#FFA500;
+}
+
 .grid{
     display: flex;
     flex-direction: column; /* default mobile layout */
@@ -50,14 +54,23 @@ body{
   border-radius: 10px;
 }
 
+.tab-icon {
+  width: 32px;
+  height: 32px;
+  fill: white;
+  display: inline-block;
+}
+
+.tab-label {
+  display: none;
+}
+
 @media (min-width: 768px) {
     .grid{
         flex-direction: row;
     }
   .app-nav {
     position:relative;
-    left:0px;
-    bottom:auto;
     width: var(--nav-width);
     height: 100%;
     flex-direction: column;
@@ -65,7 +78,7 @@ body{
     border-right: 1px solid #808080;
     justify-content: flex-start;
     align-items: flex-start;
-    padding-top: 20px;
+    padding-top: 50px;
   }
   .app-nav .tab {
     width: 80%;
@@ -77,4 +90,13 @@ body{
 .main{
     padding-right: clamp(0px, 10%, 10%);
 }
+
+.tab-icon {
+    display: none;
+  }
+
+  .tab-label {
+    display: inline-block;
+    margin-left: 10px;
+  }
 }
