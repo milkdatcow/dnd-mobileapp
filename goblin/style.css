@@ -76,6 +76,53 @@ h1{
   stroke: #FFA500;
 }
 
+.search-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: none;
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.result-card {
+    background-color: #1c1c1c;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #444;
+}
+
+.result-card h2 {
+    margin: 0 0 5px;
+    font-size: 1.2rem;
+    color: #FFA500;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: none;
+  background: #444;
+  color: white;
+}
+
+.monster-card {
+  background: #3a3a3a;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #555;
+}
 
 @media (min-width: 768px) {
     .grid{

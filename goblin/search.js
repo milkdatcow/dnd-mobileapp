@@ -1,35 +1,58 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  const response = await fetch("/data/monsters.json");
-  const data = await response.json();
-  const monsters = data.monster;
-
-  const input = document.getElementById("searchInput");
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("searchInput");
   const resultsContainer = document.getElementById("results");
 
-  input.addEventListener("input", () => {
-    const query = input.value.toLowerCase();
-    const filtered = monsters.filter(m => m.name.toLowerCase().includes(query));
-    renderResults(filtered);
-  });
+  function getMonsterType(monster) {
+  if (typeof monster.type === "string") {
+    return monster.type;
+  } else if (typeof monster.type === "object" && monster.type.type) {
+    const mainType = monster.type.type;
+    const subTypes = Array.isArray(monster.type.tags) && monster.type.tags.length
+      ? ` (${monster.type.tags.join(", ")})`
+      : "";
+    return mainType + subTypes;
+  } else if (Array.isArray(monster.type)) {
+    return monster.type.join(", ");
+  }
+  return "Unknown";
+}
 
-  function renderResults(monsters) {
-    resultsContainer.innerHTML = ""; // Clear old results
-    if (monsters.length === 0) {
-      resultsContainer.innerHTML = "<p>No matches found.</p>";
+  function renderResults(filtered) {
+    resultsContainer.innerHTML = ""; // Clear previous
+    if (filtered.length === 0) {
+      resultsContainer.innerHTML = "<p>No monsters found.</p>";
       return;
     }
 
-    monsters.forEach(monster => {
-      const el = document.createElement("div");
-      el.className = "monster-card";
-      el.innerHTML = `
+    filtered.forEach(monster => {
+      const div = document.createElement("div");
+      div.classList.add("monster-card");
+      div.innerHTML = `
         <h2>${monster.name}</h2>
         <p><strong>CR:</strong> ${monster.cr}</p>
-        <p><strong>Type:</strong> ${monster.type?.type || "?"}</p>
-        <p><strong>AC:</strong> ${monster.ac?.[0]?.ac || "?"}</p>
-        <p><strong>HP:</strong> ${monster.hp?.average || "?"}</p>
+        <p><strong>Type:</strong> ${getMonsterType(monster)}</p>
+        <p><strong>Source:</strong> ${monster.source}</p>
       `;
-      resultsContainer.appendChild(el);
+      resultsContainer.appendChild(div);
     });
   }
+
+  function searchMonsters(query) {
+    const lowerQuery = query.toLowerCase();
+    const filtered = monsters.monster.filter(m => {
+      const type = String(getMonsterType(m)).toLowerCase();
+      return (
+        m.name.toLowerCase().includes(lowerQuery) ||
+        type.includes(lowerQuery)
+      );
+    });
+    renderResults(filtered);
+  }
+
+  searchInput.addEventListener("input", e => {
+    searchMonsters(e.target.value);
+  });
+
+  // Load all by default
+  renderResults(monsters.monster);
 });
