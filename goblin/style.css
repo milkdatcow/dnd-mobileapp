@@ -76,52 +76,56 @@ h1{
   stroke: #FFA500;
 }
 
-.search-input {
-    width: 100%;
-    max-width: 400px;
-    padding: 10px;
-    font-size: 1rem;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    border: none;
-}
-
-.results {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.result-card {
-    background-color: #1c1c1c;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #444;
-}
-
-.result-card h2 {
-    margin: 0 0 5px;
-    font-size: 1.2rem;
-    color: #FFA500;
-}
-
 #searchInput {
   width: 100%;
   padding: 10px;
   font-size: 1rem;
   margin-bottom: 20px;
   border-radius: 5px;
-  border: none;
+  border: solid white;
   background: #444;
   color: white;
+  box-sizing: border-box;
+  width: 80%;
+}
+
+#searchInput:focus {
+  border-color: white;
+}
+
+#search-container {
+  position: sticky;
+  top: 0;
+  background-color: #2C2C2C; /* match your background so it blends */
+  padding: 10px 0;
+  z-index: 100; /* so it stays above other content */
+  border-bottom: 1px solid #444; /* optional, to visually separate */
 }
 
 .monster-card {
-  background: #3a3a3a;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  border: 1px solid #555;
+  display: flex;
+  gap: 10px; /* space between fields */
+  padding: 10px;
+  border-bottom: 1px solid #555;
+  margin-bottom: 10px;
+  color: white;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.monster-card > p{
+  margin: 0;
+  padding: 4px 4px;
+  overflow-wrap: break-word;
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+.monster-card > p {
+  flex-basis: 100px; /* fixed width for CR, Type, Source */
+  flex-shrink: 0;
+  font-size: 1rem;
 }
 
 @media (min-width: 768px) {
