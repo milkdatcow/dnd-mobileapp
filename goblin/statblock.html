@@ -25,11 +25,20 @@
             </nav>
         </div>
         <div class="main">
-            
+            <div class="statblock" id="statblock">
+                <h1 id="monsterName"></h1>
+                <p><strong>CR:</strong> <span id="monsterCR"></span></p>
+                <p><strong>Type:</strong> <span id="monsterType"></span></p>
+                <p><strong>Source:</strong> <span id="monsterSource"></span></p>
+                <!-- Add more fields as needed -->
+                <button onclick="history.back()">← Back</button>
+            </div>
         </div>
         
 </div>
 
 </body>
 <script src="icon.js"></script>
+<script src="data/monsters.js"></script>
+<script src="statblock.js"></script>
 </html>

@@ -30,19 +30,25 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function renderNextPage() {
-    const nextPage = filteredResults.slice(currentIndex, currentIndex + PAGE_SIZE);
-    nextPage.forEach(monster => {
-      const div = document.createElement("div");
-      div.classList.add("monster-card");
-      div.innerHTML = `
-        <p>${monster.name}</p>
-        <p>${formatCR(monster.cr)}</p>
-        <p>${getMonsterType(monster)}</p>
-      `;
-      resultsContainer.appendChild(div);
+  const nextPage = filteredResults.slice(currentIndex, currentIndex + PAGE_SIZE);
+  nextPage.forEach(monster => {
+    const div = document.createElement("div");
+    div.classList.add("monster-card");
+    div.innerHTML = `
+      <p>${monster.name}</p>
+      <p>${formatCR(monster.cr)}</p>
+      <p>${getMonsterType(monster)}</p>
+    `;
+
+    div.addEventListener("click", () => {
+      const nameParam = encodeURIComponent(monster.name);
+      window.location.href = `statblock.html?name=${nameParam}`;
     });
-    currentIndex += PAGE_SIZE;
-  }
+
+
+    resultsContainer.appendChild(div);
+  });
+}
 
   function searchMonsters(query) {
     const lowerQuery = query.toLowerCase();
