@@ -4,49 +4,54 @@
   --gutter: 20px;
 }
 
-body{
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    margin:0px;
-    padding:0px;
-    background-color: #2C2C2C;
-    color: white;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-h1{
-    color:#FFA500;
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #2C2C2C;
+  color: white;
+  overflow-x: hidden;
 }
 
-.grid{
-    display: flex;
-    flex-direction: column; /* default mobile layout */
-    min-height: 100vh;
+h1 {
+  color: #FFA500;
 }
 
-.main{               
-    max-width: none;           
-    flex: 1;                    
-    padding: 40px;
+.grid {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.app-nav{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: var(--nav-height);
-    background: #2C2C2C;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-top: 1px solid #808080;
-    z-index: 1000;
+.main {
+  flex: 1;
+  width: 100%;
+  padding: 40px;
+}
+
+.app-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: var(--nav-height);
+  background: #2C2C2C;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid #808080;
+  z-index: 1000;
 }
 
 .app-nav .tab {
-    color:white;
-    text-decoration: none;
-    font-size: 1rem;
-    padding: 10px;
-    text-align: center;
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 10px;
+  text-align: center;
 }
 
 .app-nav .tab:hover {
@@ -66,27 +71,29 @@ h1{
 }
 
 .app-nav .tab svg {
-  fill: white;         
+  fill: white;
   transition: fill 0.3s ease;
 }
 
 .app-nav .tab.active svg {
-  fill: #FFA500;       
+  fill: #FFA500;
   stroke-width: 0.5;
   stroke: #FFA500;
 }
 
 #searchInput {
   width: 100%;
+  max-width: 800px;
   padding: 10px;
   font-size: 1rem;
   margin-bottom: 20px;
   border-radius: 5px;
-  border: solid white;
+  border: 1px solid white;
   background: #444;
   color: white;
-  box-sizing: border-box;
-  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #searchInput:focus {
@@ -96,57 +103,58 @@ h1{
 #search-container {
   position: sticky;
   top: 0;
-  background-color: #2C2C2C; 
+  background-color: #2C2C2C;
   padding: 10px 0;
   z-index: 100;
 }
 
 .search-card {
   display: flex;
-  gap: 10px; 
-  padding: 10px;
+  gap: 10px;
+  padding: 10px 0;
   border-bottom: 1px solid #555;
   margin-bottom: 10px;
   color: white;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
-  box-sizing: border-box;
-}
-
-.search-card > p{
-  margin: 0;
-  padding: 4px 4px;
-  overflow-wrap: break-word;
-  flex-shrink: 0;
-  font-size: 1rem;
 }
 
 .search-card > p {
-  flex-basis: 120px;
-  flex-shrink: 0;
+  margin: 0;
+  padding: 4px;
   font-size: 1rem;
+  flex: 1 1 0;                /* grow & shrink */
+  min-width: 0;               /* allow content to shrink */
+  white-space: normal;        /* enable wrapping */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
-.name{
-  color:#FFA500;
+
+
+.name {
+  color: #FFA500;
 }
 
-.labels{
-  display:flex;
-  gap:10px
+.labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
-.labels > p{
-  flex-basis: 120px;
-  flex-shrink: 0;
+
+.labels > p {
+  flex: 1 1 120px;
   padding: 4px 14px;
+  min-width: 0;
 }
 
 @media (min-width: 768px) {
-    .grid{
-        flex-direction: row;
-    }
+  .grid {
+    flex-direction: row;
+  }
+
   .app-nav {
-    position:relative;
+    position: relative;
     width: var(--nav-width);
     height: 100%;
     flex-direction: column;
@@ -156,23 +164,30 @@ h1{
     align-items: flex-start;
     padding-top: 50px;
   }
+
   .app-nav .tab {
     width: 80%;
     text-align: left;
   }
-  .left-pane{
-    padding-left: clamp(0px, 10%, 10%);
-}
-.main{
-    padding-right: clamp(0px, 10%, 10%);
-}
 
-.tab-icon {
+  .left-pane {
+    padding-left: 10%;
+  }
+
+  .main {
+    padding-right: 10%;
+  }
+
+  .tab-icon {
     display: none;
   }
 
   .tab-label {
     display: inline-block;
     margin-left: 10px;
+  }
+
+  .search-card > p {
+    flex: 1 1 200px;
   }
 }
