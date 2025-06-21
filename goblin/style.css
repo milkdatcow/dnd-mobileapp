@@ -102,7 +102,7 @@ h1{
   border-bottom: 1px solid #444; /* optional, to visually separate */
 }
 
-.monster-card {
+.search-card {
   display: flex;
   gap: 10px; /* space between fields */
   padding: 10px;
@@ -114,7 +114,7 @@ h1{
   box-sizing: border-box;
 }
 
-.monster-card > p{
+.search-card > p{
   margin: 0;
   padding: 4px 4px;
   overflow-wrap: break-word;
@@ -122,8 +122,8 @@ h1{
   font-size: 1rem;
 }
 
-.monster-card > p {
-  flex-basis: 100px; /* fixed width for CR, Type, Source */
+.search-card > p {
+  flex-basis: 100px;
   flex-shrink: 0;
   font-size: 1rem;
 }
