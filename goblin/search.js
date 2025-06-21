@@ -1,47 +1,31 @@
-//When the page loads
-document.addEventListener("DOMContentLoaded", function() {
-
+document.addEventListener("DOMContentLoaded", function () {
   const displaySearch = document.getElementById("results");
   const input = document.getElementById("searchInput");
 
+  const displayData = () => {
+    const query = input.value;
+    const lowerQuery = query.toLowerCase();
 
-  const displayData = async () =>{
-    let query = input.value;
-    console.log("query: ", query);
+    const filtered = data.monster.filter(m =>
+      m.name.toLowerCase().includes(lowerQuery)
+    );
 
+    filtered.sort((a, b) => a.name.localeCompare(b.name));
 
-    let dataDisplay = data.monster.filter((eventData)=>{
-      if (query === ""){return eventData}
-      else if (eventData.name.toLowerCase().includes(query.toLowerCase())){return eventData}
-    }).map((object)=>{
-      const { name, cr, source} = object;
-
+    const dataDisplay = filtered.map(monster => {
+      const { name, type, cr} = monster;
       return `
-      <div class="search-card">
-        <p>${name}</p>
-        <p>${cr}</p>
-        <p>${source}</p>
-      </div>
-      `
+        <div class="search-card">
+          <p>${name}</p>
+          <p>${type}</p>
+          <p>${cr}</p>
+        </div>
+      `;
     }).join("");
 
     displaySearch.innerHTML = dataDisplay;
-    
-  }
+  };
 
-input.addEventListener("input", displayData);
-
+  displayData();
+  input.addEventListener("input", displayData);
 });
-
-
-
-//Get the search from the search bar
-
-//Filter through json file to find a match
-
-//Display results in a list.
-
-
-
-
-
