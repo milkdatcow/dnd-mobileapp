@@ -123,9 +123,9 @@ h1 {
   margin: 0;
   padding: 4px;
   font-size: 1rem;
-  flex: 1 1 0;                /* grow & shrink */
-  min-width: 0;               /* allow content to shrink */
-  white-space: normal;        /* enable wrapping */
+  flex: 1 1 0;              
+  min-width: 0;             
+  white-space: normal;       
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
