@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const { name, type, challenge_rating } = monster;
       return `
         <div class="search-card">
-          <p>${name}</p>
+          <p class="name">${name}</p>
           <p>${getMonsterType(monster)}</p>
           <p>${getCR(monster)}</p>
         </div>

@@ -66,12 +66,12 @@ h1{
 }
 
 .app-nav .tab svg {
-  fill: white;          /* default icon color */
+  fill: white;         
   transition: fill 0.3s ease;
 }
 
 .app-nav .tab.active svg {
-  fill: #FFA500;       /* orange accent color for active icon */
+  fill: #FFA500;       
   stroke-width: 0.5;
   stroke: #FFA500;
 }
@@ -96,15 +96,14 @@ h1{
 #search-container {
   position: sticky;
   top: 0;
-  background-color: #2C2C2C; /* match your background so it blends */
+  background-color: #2C2C2C; 
   padding: 10px 0;
-  z-index: 100; /* so it stays above other content */
-  border-bottom: 1px solid #444; /* optional, to visually separate */
+  z-index: 100;
 }
 
 .search-card {
   display: flex;
-  gap: 10px; /* space between fields */
+  gap: 10px; 
   padding: 10px;
   border-bottom: 1px solid #555;
   margin-bottom: 10px;
@@ -126,6 +125,20 @@ h1{
   flex-basis: 120px;
   flex-shrink: 0;
   font-size: 1rem;
+}
+
+.name{
+  color:#FFA500;
+}
+
+.labels{
+  display:flex;
+  gap:10px
+}
+.labels > p{
+  flex-basis: 120px;
+  flex-shrink: 0;
+  padding: 4px 14px;
 }
 
 @media (min-width: 768px) {
