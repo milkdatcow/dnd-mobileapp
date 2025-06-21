@@ -3,22 +3,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const input = document.getElementById("searchInput");
 
   const displayData = () => {
-    const query = input.value;
-    const lowerQuery = query.toLowerCase();
+    const query = input.value.toLowerCase();
 
     const filtered = data.monster.filter(m =>
-      m.name.toLowerCase().includes(lowerQuery)
+      m.name.toLowerCase().includes(query)
     );
 
     filtered.sort((a, b) => a.name.localeCompare(b.name));
 
     const dataDisplay = filtered.map(monster => {
-      const { name, type, cr} = monster;
+      const { name, type, challenge_rating } = monster;
       return `
         <div class="search-card">
           <p>${name}</p>
-          <p>${type}</p>
-          <p>${cr}</p>
+          <p>${getMonsterType(monster)}</p>
+          <p>${getCR(monster)}</p>
         </div>
       `;
     }).join("");
@@ -28,4 +27,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   displayData();
   input.addEventListener("input", displayData);
+
+  function getCR(monster) {
+    return monster.challenge_rating || "Unknown";
+  }
+
+  function getMonsterType(monster) {
+    return monster.type || "Unknown";
+  }
 });
