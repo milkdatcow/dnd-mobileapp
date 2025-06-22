@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Search</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -27,13 +27,21 @@
         <div class="main">
             <div id="search-container">
             <input type="text" id="searchInput" placeholder="Search monsters..." />
+            <div class="kebab-menu"><svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/></svg></div>
             </div>
             <div class="search-card"><p>Name</p><p>Type</p><p>CR</p></div>
             <div id="results"></div>
         
         </div>
-        
 </div>
+
+    <div id="modal-backdrop" class="hidden">
+        <div class="modal-box">
+            <button id="close-modal" class="close-btn">&times;</button>
+            <h2>Modal Title</h2>
+            <p>This is the modal content!</p>
+        </div>
+    </div>
 
 </body>
 <script src="icon.js"></script>

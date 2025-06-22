@@ -30,7 +30,10 @@ h1 {
 .main {
   flex: 1;
   width: 100%;
-  padding: 20px;
+  padding: 0 20px;
+  overflow-y: auto;
+  position: relative; 
+  max-height: 100vh;       
 }
 
 .app-nav {
@@ -65,6 +68,14 @@ h1 {
   fill: white;
   display: inline-block;
 }
+.menu-icon {
+  width: 32px;
+  height: 32px;
+  fill: white;
+  display: flex;
+  margin-left: auto;
+  margin-right: 0;
+}
 
 .tab-label {
   display: none;
@@ -81,32 +92,37 @@ h1 {
   stroke: #FFA500;
 }
 
+#search-container {
+  position: sticky;
+  top: 0;
+  background-color: #2C2C2C;
+  padding: 30px 0;
+  z-index: 100;
+  display: flex;
+}
+
 #searchInput {
-  width: 100%;
+  width: 80%;
   max-width: 800px;
-  padding: 10px;
+  padding: 5px;
   font-size: 1rem;
-  margin-bottom: 20px;
   border-radius: 5px;
   border: 1px solid white;
   background: #444;
   color: white;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+}
+
+.kebab-menu{
+  width: 20%;
+  padding: 5px;
 }
 
 #searchInput:focus {
   border-color: white;
 }
 
-#search-container {
-  position: sticky;
-  top: 0;
-  background-color: #2C2C2C;
-  padding: 10px 0;
-  z-index: 100;
-}
+
 
 .search-card {
   display: flex;
