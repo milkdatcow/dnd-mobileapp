@@ -27,19 +27,27 @@
         <div class="main">
             <div id="search-container">
             <input type="text" id="searchInput" placeholder="Search monsters..." />
-            <div class="kebab-menu"><svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/></svg></div>
+            <div id="open-modal" class="kebab-menu"><svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/></svg></div>
             </div>
             <div class="search-card"><p>Name</p><p>Type</p><p>CR</p></div>
             <div id="results"></div>
         
         </div>
 </div>
+    <div id="hide" class="hidden">
+        <div id="modal-backdrop">
+            <div class="modal-box">
+                <button id="close-modal" class="close-btn">&times;</button>
+                <h2>Filters</h2>
 
-    <div id="modal-backdrop" class="hidden">
-        <div class="modal-box">
-            <button id="close-modal" class="close-btn">&times;</button>
-            <h2>Modal Title</h2>
-            <p>This is the modal content!</p>
+                <select id="type-select">
+                    <option value="">all</option>
+                </select>
+
+                <select id="cr-select">
+                    <option value="">all</option>
+                </select>
+            </div>
         </div>
     </div>
 
@@ -47,4 +55,6 @@
 <script src="icon.js"></script>
 <script src="data/monsters.js"></script>
 <script src="search.js"></script>
+<script src="modal.js"></script>
+<script src="filters.js"></script>
 </html>
