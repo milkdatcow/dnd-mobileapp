@@ -21,6 +21,11 @@ h1 {
   color: #FFA500;
 }
 
+h2{
+  margin:0px;
+  margin-bottom: 20px;
+}
+
 .grid {
   display: flex;
   flex-direction: column;
@@ -102,7 +107,7 @@ h1 {
 }
 
 #searchInput {
-  width: 80%;
+  width: 90%;
   max-width: 800px;
   padding: 5px;
   font-size: 1rem;
@@ -114,15 +119,14 @@ h1 {
 }
 
 .kebab-menu{
-  width: 20%;
-  padding: 5px;
+  width: 10%;
+  padding: 5px; 
+  cursor: pointer;
 }
 
 #searchInput:focus {
   border-color: white;
 }
-
-
 
 .search-card {
   display: flex;
@@ -162,8 +166,6 @@ h1 {
   min-width: 0;
 }
 
-
-
 #modal-backdrop{
   position: fixed;
   top: 0;
@@ -183,11 +185,9 @@ h1 {
 
 .modal-box{
   background-color: #2C2C2C;
-  padding: 30px;
-  border-radius: 10px;
-  max-width: 90%;
-  max-height: 80%;
-  overflow-y: auto;
+  padding: 20px;
+  width: 70%;
+  max-height: 90%;
   box-shadow: 0 0 20px rgba(0,0,0,0.6);
   color: white;
 }
@@ -196,11 +196,22 @@ h1 {
   position: absolute;
   top:10px;
   right: 15px;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   background:none;
   color: white;
   border: none;
   cursor: pointer;
+}
+
+.dropdown{
+  padding:12px;
+  background-color: #2C2C2C;
+  border: solid 1px white;
+  border-radius: 10px;
+  color: white;
+  display: block;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -245,4 +256,7 @@ h1 {
   .search-card > p {
     flex: 1 1 200px;
   }
+  .modal-box{
+  max-width: 300px;
+}
 }
