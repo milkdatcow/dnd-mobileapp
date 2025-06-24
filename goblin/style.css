@@ -82,6 +82,10 @@ h2{
   margin-right: 0;
 }
 
+.back-arrow{
+  fill:white; width:32px; height:32px;
+}
+
 .tab-label {
   display: none;
 }
@@ -152,6 +156,7 @@ h2{
 
 .name {
   color: #FFA500;
+  text-decoration: none;
 }
 
 .labels {

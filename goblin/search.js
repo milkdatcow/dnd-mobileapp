@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const input = document.getElementById("searchInput");
   const typeSelect = document.getElementById("type-select");
   const crSelect = document.getElementById("cr-select");
+  
 
   const displayData = () => {
     const query = input.value.toLowerCase();
@@ -24,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const { name, type, challenge_rating } = monster;
       return `
         <div class="search-card">
-          <p class="name">${name}</p>
+          <p><a class="name" href="statblock.html?name=${encodeURIComponent(name)}">${name}</a></p>
           <p>${getMonsterType(monster)}</p>
           <p>${getCR(monster)}</p>
         </div>

@@ -1,84 +1,111 @@
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const monsterName = decodeURIComponent(params.get("name"));
+  
+  const stat = data.monster.find(m=>m.name === monsterName);
 
-  if (!monsterName || !monsters || !monsters.monster) {
-    document.getElementById("statblock").innerHTML = "<p>Monster not found.</p>";
-    return;
+  if(!stat){
+    document.body.innerHTML = `<p>${monsterName} not found</p>`;
   }
 
-  const monster = monsters.monster.find(m => m.name === monsterName);
+  function renderMonster(monster){
+    const container = document.getElementById("statblock");
 
-  if (!monster) {
-    document.getElementById("statblock").innerHTML = "<p>Monster not found.</p>";
-    return;
-  }
+    const section = (title, content) =>`
+      <div class="stat-section">
+        <h3>${title}</h3>
+        <p>${content}</p>
+      </div>
+      `;
 
-  function getType(m) {
-    if (typeof m.type === "string") return m.type;
-    if (typeof m.type === "object" && m.type.type)
-      return m.type.type + (m.type.tags?.length ? ` (${m.type.tags.join(", ")})` : "");
-    return "Unknown";
-  }
+      let html = `
+      <a class="back-arrow" href="search.html"><svg class="back-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/></svg></a>
+      <h1>${monsterName}</h1>
+      ${monster.size && monster.type && monster.alignment ? section("", `${monster.size} ${monster.type}, ${monster.alignment}`) : ""}
+      ${section("", formatAC(monster.armor_class))}
+      ${section("", formatHP(monster.hit_points))}
+      ${section("", formatSpeed(monster.speed))}
+      ${section("", formatAbilities(monster))}
+      ${monster.challenge_rating ? section("", formatCR(monster.challenge_rating)) : ""}
+      ${monster.damage_vulnerabilities ? section("", formatVuln(monster.damage_vulnerabilities)) : ""}
+      ${monster.damage_resistances ? section("", formatResist(monster.damage_resistances)) : ""}
+      ${monster.damage_immunities ? section("", formatImm(monster.damage_immunities)) : ""}
+      ${monster.condition_immunities ? section("", formatCondition(monster.condition_immunities)) : ""}
+      ${monster.senses ? section("", formatSenses(monster.senses)) : ""}
+      ${monster.languages ? section("", formatLanguage(monster.languages)) : "<strong>Languages:</strong> -"}
+      ${monster.special_abilities ? section("", formatActions(monster.special_abilities)) : ""}
+      ${monster.actions ? section("Actions", formatActions(monster.actions)) : ""}
+      ${monster.legendary_actions ? section("Legendary Actions", formatActions(monster.legendary_actions)) : ""}
+      `
 
-  function formatCR(cr) {
-    return typeof cr === "object" ? Object.values(cr).join(", ") : cr;
-  }
+    container.innerHTML = html;
+    };
 
-  function formatAC(ac) {
-    if (Array.isArray(ac)) {
-      return ac.map(a => a.ac).join(", ");
-    }
-    return ac;
-  }
-
-  function formatSpeed(speed) {
-    if (typeof speed === "string") return speed;
-    return Object.entries(speed)
-      .map(([k, v]) => `${k} ${v}`)
-      .join(", ");
-  }
-
-  function renderEntries(title, items = []) {
-    if (!items.length) return "";
-    return `
-      <h2>${title}</h2>
-      <ul>
-        ${items
-          .map(
-            item => `
-          <li>
-            <strong>${item.name}.</strong>
-            ${Array.isArray(item.entries) ? item.entries.join(" ") : item.entries}
-          </li>
-        `
-          )
-          .join("")}
-      </ul>
-    `;
-  }
-
-  const statblock = document.getElementById("statblock");
-
-  statblock.innerHTML = `
-    <h1>${monster.name}</h1>
-    <p><strong>CR:</strong> ${formatCR(monster.cr)}</p>
-    <p><strong>Type:</strong> ${getType(monster)}</p>
-    <p><strong>Source:</strong> ${monster.source}</p>
-    <p><strong>Size:</strong> ${monster.size}</p>
-    <p><strong>Alignment:</strong> ${monster.alignment?.join(", ")}</p>
-    <p><strong>HP:</strong> ${monster.hp?.average} (${monster.hp?.formula})</p>
-    <p><strong>AC:</strong> ${formatAC(monster.ac)}</p>
-    <p><strong>Speed:</strong> ${formatSpeed(monster.speed)}</p>
-    <p><strong>STR/DEX/CON/INT/WIS/CHA:</strong>
-      ${monster.str} / ${monster.dex} / ${monster.con} / ${monster.int} / ${monster.wis} / ${monster.cha}
-    </p>
-  `;
-
-  statblock.innerHTML += renderEntries("Traits", monster.trait || []);
-  statblock.innerHTML += renderEntries("Actions", monster.action || []);
-  statblock.innerHTML += renderEntries("Reactions", monster.reaction || []);
-  statblock.innerHTML += renderEntries("Legendary Actions", monster.legendary || []);
-  statblock.innerHTML += renderEntries("Lair Actions", monster.lairAction || []);
-  statblock.innerHTML += renderEntries("Regional Effects", monster.regional || []);
+    renderMonster(stat);
 });
+
+function formatAC(ac){
+  return (`<strong>Armour Class:</strong> ${ac}`)
+}
+
+function formatHP(hp){
+  return (`<strong>Hit Points:</strong> ${hp}`)
+}
+
+function formatCR(cr){
+  return (`<strong>Challenge Rating:</strong> ${cr}`)
+}
+
+function formatSpeed(speed) {
+  if (typeof speed === "string") return `<strong>Speed:</strong> ${speed}`;
+  return Object.entries(speed).map(([k, v]) => `${k}: ${v}`).join(", ");
+}
+
+function formatVuln(vuln){
+  return (`<strong>Vulnerabilities:</strong> ${vuln}`)
+}
+
+function formatResist(resist){
+  return (`<strong>Resistances:</strong> ${resist}`)
+}
+
+function formatImm(imm){
+  return (`<strong>Immunities:</strong> ${imm}`)
+}
+
+function formatCondition(cond){
+  return (`<strong>Condition Immunities:</strong> ${cond}`)
+}
+
+function formatSenses(senses){
+  return (`<strong>Senses:</strong> ${senses}`)
+}
+
+function formatLanguage(language){
+  return (`<strong>Languages:</strong> ${language}`)
+}
+
+function formatAbilities(monster) {
+  return `<table>
+          <tr>
+            <th>STR</th>
+            <th>DEX</th>
+            <th>CON</th>
+            <th>INT</th>
+            <th>WIS</th>
+            <th>CHA</th>
+          </tr>
+          <tr>
+          <td>${monster.strength}</td>
+          <td>${monster.dexterity}</td>
+          <td>${monster.constitution}</td>
+          <td>${monster.intelligence}</td>
+          <td>${monster.wisdom}</td>
+          <td>${monster.charisma}</td>
+          </tr>
+          </table>`
+}
+
+function formatActions(actions) {
+  return actions.map(a => `<strong>${a.name}:</strong> ${a.desc}`).join("<br><br>");
+}
