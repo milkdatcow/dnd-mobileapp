@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("hide-nav");
   const params = new URLSearchParams(window.location.search);
   const monsterName = decodeURIComponent(params.get("name"));
   
